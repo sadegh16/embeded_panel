@@ -56,7 +56,7 @@ def food_order():
             print("2 enabled")
 
             today = datetime.datetime.now()
-            if is_in_period(tank.set1, today):
+            if is_in_period(tank.set2, today):
                 today_modified = today.replace(hour=tank.set2.hour, minute=tank.set2.minute, second=tank.set2.second)
                 tank.feed_number += 1
                 tank.last_feeding_time = today_modified
@@ -68,7 +68,7 @@ def food_order():
             print("3 enabled")
 
             today = timezone.now()
-            if is_in_period(tank.set1, today):
+            if is_in_period(tank.set3, today):
                 today_modified = today.replace(hour=tank.set3.hour, minute=tank.set3.minute, second=tank.set3.second)
                 tank.feed_number += 1
                 tank.last_feeding_time = today_modified

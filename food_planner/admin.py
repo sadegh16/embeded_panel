@@ -36,12 +36,13 @@ class TankAdmin(admin.ModelAdmin):
         query = Tank.objects.filter(pk=tank_id)
         if len(query) > 0 :
             tank = query[0]
-            today=datetime.datetime.now()
-            if tank.last_feeding_time> today+timedelta(seconds=10):
+            now=timezone.now()
+            if tank.last_feeding_time +timedelta(seconds=10)< now:
                 tank.feed_number += 1
-                tank.last_feeding_time = today
+                raw_time=datetime.datetime.now()
+                tank.last_feeding_time = raw_time
                 tank.save()
-                # trigger_micro(tank,today,)
+                # trigger_micro(tank,raw_time,)
         return redirect('/food_planner/tank/')
 
     def tank_actions(self, obj):

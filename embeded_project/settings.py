@@ -31,13 +31,16 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 INSTALLED_APPS = [
+    'baton',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'food_planner'
+    'food_planner',
+    'baton.autodiscover',
+
 ]
 
 MIDDLEWARE = [
@@ -106,7 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tehran'
+
 
 USE_I18N = True
 
@@ -124,3 +128,16 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+#
+BATON = {
+    'SITE_HEADER': 'Morghdari',
+    'SITE_TITLE': 'Morghdari',
+    'INDEX_TITLE': 'Morghdari Team',
+    'SUPPORT_HREF': 'https://Morghdari.ir',
+    'COPYRIGHT': 'copyright © 2020 <a href="https://Morghdari.ir">Morghdari Team</a>',
+    'POWERED_BY': '<a href="https://Morghdari.ir">Morghdari Team</a>',
+    'CONFIRM_UNSAVED_CHANGES': True,
+    'SHOW_MULTIPART_UPLOADING': True,
+    'ENABLE_IMAGES_PREVIEW': True,
+
+}

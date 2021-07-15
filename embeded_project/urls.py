@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls import include, url
+from django.views.generic import RedirectView
 
 urlpatterns = [
+
+    url(r'^baton/', include('baton.urls')),
+    path('', admin.site.urls,),
     path('admin/', admin.site.urls),
 ]
+admin.site.site_header = "Morghdari Team"
+admin.site.site_title = "Morghdari Admin"
+admin.site.index_title = "Welcome to Morghdari Portal"

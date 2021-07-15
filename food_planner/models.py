@@ -15,3 +15,9 @@ class Tank(models.Model):
     set3_enabled = models.BooleanField(default=False,)
     last_feeding_time = models.DateTimeField(default=now, null=True, blank=False)
     feed_number = models.IntegerField(default=0,)
+
+
+class Feeding(models.Model):
+    SUB_TYPES = ((0, 'مخزن1'), (1, 'مخزن2'), (2, 'مخزن3'))
+    tank_number = models.IntegerField(choices=SUB_TYPES, )
+    feeding_time = models.DateTimeField(default=now, null=True, blank=False)

@@ -6,7 +6,7 @@ from django.contrib.auth.models import Group
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.html import format_html
-from food_planner.models import Tank
+from food_planner.models import Tank, Feeding
 from django.contrib import messages
 import datetime
 from datetime import timedelta
@@ -37,12 +37,12 @@ class TankAdmin(admin.ModelAdmin):
         if len(query) > 0 :
             tank = query[0]
             now=timezone.now()
-            if tank.last_feeding_time +timedelta(seconds=10)< now:
+            if tank.last_feeding_time==None or tank.last_feeding_time +timedelta(seconds=10)< now:
                 tank.feed_number += 1
                 raw_time=datetime.datetime.now()
                 tank.last_feeding_time = raw_time
                 tank.save()
-                # trigger_micro(tank,raw_time,)
+                trigger_micro(tank,raw_time,)
         return redirect('/food_planner/tank/')
 
     def tank_actions(self, obj):
@@ -56,3 +56,8 @@ class TankAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Tank, TankAdmin)
+
+class FeedingAdmin(admin.ModelAdmin):
+    list_display = ('tank_number', 'feeding_time',)
+    readonly_fields = ('tank_number', 'feeding_time',)
+admin.site.register(Feeding, FeedingAdmin)

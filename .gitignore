@@ -8,15 +8,10 @@ myenv
 .idea/*
 __pycache__/
 local_settings.py
-db.sqlite3
-db.sqlite3-journal
 media
 /static
 .env
 venv
-**/migrations/**
-!**/migrations
-!**/migrations/__init__.py
 
 ### Django.Python Stack ###
 # Byte-compiled / optimized / DLL files

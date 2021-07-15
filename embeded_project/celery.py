@@ -25,7 +25,7 @@ app.conf.beat_schedule = {
     'reset-tanks-seconds': {
         'task': 'food_planner.periodic_tasks.reset_tanks',
         # Schedule
-        'schedule': 180.0,
+        'schedule': 300.0,
         # 'args': (),
     },
 

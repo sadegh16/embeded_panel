@@ -41,7 +41,7 @@ class TankAdmin(admin.ModelAdmin):
                 tank.feed_number += 1
                 tank.last_feeding_time = today
                 tank.save()
-                trigger_micro(tank,today,)
+                # trigger_micro(tank,today,)
         return redirect('/food_planner/tank/')
 
     def tank_actions(self, obj):

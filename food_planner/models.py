@@ -13,4 +13,5 @@ class Tank(models.Model):
     set1_enabled = models.BooleanField(default=False,)
     set2_enabled = models.BooleanField(default=False,)
     set3_enabled = models.BooleanField(default=False,)
+    last_feeding_time = models.DateTimeField(default=now, null=True, blank=False)
     feed_number = models.IntegerField(default=0,)

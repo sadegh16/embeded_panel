@@ -141,3 +141,11 @@ BATON = {
     'ENABLE_IMAGES_PREVIEW': True,
 
 }
+
+# setting for celery to connect to redis as message broker
+BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_IMPORTS = ("food_planner.periodic_tasks",)

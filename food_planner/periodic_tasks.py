@@ -15,14 +15,14 @@ def is_in_period(set, today):
 
 def trigger_micro(tank, today):
     Feeding.objects.create(tank_number=tank.tank_number,feeding_time=today)
-    # print("sending to microcontroller ...")
-    # ser = serial.Serial()
-    # ser.baudrate = 9600
-    # ser.port = '/dev/ttyS' + str(tank.tank_number + 4)
-    # ser.open()
-    # reformat_today=today.strftime('%Y/%m/%d_%H:%M:%S')
-    # ser.write(bytes("N"+reformat_today))
-    # ser.close()
+    print("sending to microcontroller ...")
+    ser = serial.Serial()
+    ser.baudrate = 9600
+    ser.port = '/dev/ttyS' + str(tank.tank_number + 1)
+    ser.open()
+    reformat_today=today.strftime('%Y/%m/%d_%H:%M:%S')
+    ser.write(bytes("N"+reformat_today))
+    ser.close()
 
 
 @app.task
@@ -35,7 +35,7 @@ def reset_tanks():
     for i in range(3):
         ser = serial.Serial()
         ser.baudrate = 9600
-        ser.port = '/dev/ttyS' + str(i + 4)
+        ser.port = '/dev/ttyS' + str(i + 1)
         ser.open()
         ser.write(bytes("R"))
         ser.close()

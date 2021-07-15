@@ -12,6 +12,7 @@ import datetime
 from datetime import timedelta
 
 from food_planner.periodic_tasks import trigger_micro
+from food_planner.tasks import send_open_door
 
 admin.site.unregister(Group)
 
@@ -37,12 +38,13 @@ class TankAdmin(admin.ModelAdmin):
         if len(query) > 0 :
             tank = query[0]
             now=timezone.now()
-            if tank.last_feeding_time==None or tank.last_feeding_time +timedelta(seconds=10)< now:
+            if tank.last_feeding_time==None or tank.last_feeding_time + timedelta(seconds=10)< now:
                 tank.feed_number += 1
                 raw_time=datetime.datetime.now()
                 tank.last_feeding_time = raw_time
                 tank.save()
-                trigger_micro(tank,raw_time,)
+                send_open_door.delay(tank,raw_time,)
+
         return redirect('/food_planner/tank/')
 
     def tank_actions(self, obj):

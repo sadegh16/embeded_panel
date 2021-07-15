@@ -19,7 +19,8 @@ def trigger_micro(tank, today):
     ser.baudrate = 9600
     ser.port = 'COM' + str(tank.tank_number + 1)
     ser.open()
-    ser.write(bytes(today))
+    reformat_today=today.strftime('%Y/%m/%d_%H:%M:%S')
+    ser.write(bytes("N"+reformat_today))
     ser.close()
 
 
@@ -48,7 +49,7 @@ def food_order():
                 tank.feed_number += 1
                 tank.last_feeding_time = today_modified
                 tank.save()
-                # trigger_micro(tank, today)
+                # trigger_micro(tank, today_modified)
                 continue
 
         if tank.set2_enabled:
@@ -60,7 +61,7 @@ def food_order():
                 tank.feed_number += 1
                 tank.last_feeding_time = today_modified
                 tank.save()
-                # trigger_micro(tank, today)
+                # trigger_micro(tank, today_modified)
                 continue
 
         if tank.set3_enabled:
@@ -72,6 +73,6 @@ def food_order():
                 tank.feed_number += 1
                 tank.last_feeding_time = today_modified
                 tank.save()
-                # trigger_micro(tank, today)
+                # trigger_micro(tank, today_modified)
                 continue
 
